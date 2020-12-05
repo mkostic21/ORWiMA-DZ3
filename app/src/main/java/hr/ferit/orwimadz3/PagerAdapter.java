@@ -47,6 +47,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     }
 
     public void setMessage(String message) {
+        if(!message.isEmpty())
         this.message = message;
     }
 

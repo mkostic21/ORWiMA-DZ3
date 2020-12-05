@@ -39,7 +39,11 @@ public class InputFragment extends Fragment {
     }
 
     private void setUpListener() {
-        btnSubmit.setOnClickListener(v -> clickListener.onButtonClick(edInput.getText().toString()));
+        btnSubmit.setOnClickListener(v -> {
+            String input = edInput.getText().toString();
+            edInput.setText("");
+            clickListener.onButtonClick(input);
+        });
     }
 
     @Override
