@@ -55,4 +55,5 @@ public class InputFragment extends Fragment {
         super.onDestroy();
         this.clickListener = null;
     }
+
 }

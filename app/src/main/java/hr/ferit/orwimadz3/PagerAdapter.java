@@ -10,9 +10,9 @@ import java.util.Locale;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
 
-    private static final int NUM_PAGES = 2;
+    private static final int NUM_PAGES = 4;
     private static final String TAB_NAME = "#%d";
-    private String message;
+    private String message = "Default message";
 
     public PagerAdapter(@NonNull FragmentManager fm) {
         super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
@@ -22,13 +22,16 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        //TODO: default
         switch (position) {
             case 0:
                 return InputFragment.newInstance();
             case 1:
-            default:
                 return MessageFragment.newInstance(message);
+            case 2:
+                return ModularFragment.newInstance("text");
+            default:
+                return ModularFragment.newInstance("");
+
         }
     }
 
@@ -43,10 +46,12 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
         return String.format(Locale.getDefault(), TAB_NAME, position + 1);
     }
 
-
-
-    public void setString(String message) {
+    public void setMessage(String message) {
         this.message = message;
-        notifyDataSetChanged();
+    }
+
+    @Override
+    public int getItemPosition(@NonNull Object object) {
+        return POSITION_NONE;
     }
 }
